@@ -1,11 +1,10 @@
-//Omnia Osama Ahmed - 1084505
-public abstract class Service_51_G2
+public abstract class Service
 {
     //Common Attribute:
     private String passengerId;
 
     //Constructor:
-    public Service_51_G2(String passengerId) {
+    public Service(String passengerId) {
         this.passengerId = passengerId;
     }
 

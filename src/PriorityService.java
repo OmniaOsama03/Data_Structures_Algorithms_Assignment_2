@@ -1,11 +1,11 @@
 //Omnia Osama Ahmed - 1084505
-public class PriorityService_51_G2 extends Service_51_G2
+public class PriorityService extends Service
 {
     //Relevant Attribute:
     private int priorityScore;
 
     //Constructor:
-    PriorityService_51_G2(String passengerId, int priorityScore)
+    PriorityService(String passengerId, int priorityScore)
     {
         super(passengerId);
         this.priorityScore = priorityScore;

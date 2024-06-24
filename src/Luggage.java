@@ -1,5 +1,4 @@
-//Omnia Osama Ahmed - 1084505
-public class Luggage_51_G2
+public class Luggage
 {
     //Relevant attributes:
     private String id;
@@ -10,7 +9,7 @@ public class Luggage_51_G2
     private double height;
 
     //Constructor:
-    Luggage_51_G2(String ID, String passengerId, double weight, double length, double width, double height)
+    Luggage(String ID, String passengerId, double weight, double length, double width, double height)
     {
         this.id = ID;
         this.passengerId = passengerId;

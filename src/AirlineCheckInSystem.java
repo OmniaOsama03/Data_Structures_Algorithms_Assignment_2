@@ -1,17 +1,16 @@
-//Omnia Osama Ahmed - 1084505
 
 import java.util.*;
-public class AirlineCheckInSystem_51_G2
+public class AirlineCheckInSystem
 {
 
 
-    private Queue<Passenger_51_G2> passengersQueue;
-    private Stack<Luggage_51_G2> luggageStack;
-    private PriorityQueue<PriorityService_51_G2> priorityServicesQueue;
+    private Queue<Passenger> passengersQueue;
+    private Stack<Luggage> luggageStack;
+    private PriorityQueue<PriorityService> priorityServicesQueue;
 
     public static void main(String[] args)
     {
-        AirlineCheckInSystem_51_G2 checkInSystem = new AirlineCheckInSystem_51_G2();
+        AirlineCheckInSystem checkInSystem = new AirlineCheckInSystem();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -53,11 +52,11 @@ public class AirlineCheckInSystem_51_G2
                     int luggageCount = scanner.nextInt();
                     scanner.nextLine();  // Consume newline left-over
 
-                    Passenger_51_G2 passenger = new Passenger_51_G2(id, name, ticketClass, destination, isSpecialNeeds);
+                    Passenger passenger = new Passenger(id, name, ticketClass, destination, isSpecialNeeds);
 
 
                     //Information for the luggage(s):
-                    ArrayList<Luggage_51_G2> newLuggages = new ArrayList<>();
+                    ArrayList<Luggage> newLuggages = new ArrayList<>();
 
                     if(luggageCount > 0)
                     {
@@ -80,7 +79,7 @@ public class AirlineCheckInSystem_51_G2
                             double height = scanner.nextDouble();
                             scanner.nextLine();
 
-                            Luggage_51_G2 luggage = new Luggage_51_G2(lugID, id, weight, length, width, height);
+                            Luggage luggage = new Luggage(lugID, id, weight, length, width, height);
                             passenger.addLuggage(luggage);
                         }
                     }
@@ -114,11 +113,11 @@ public class AirlineCheckInSystem_51_G2
                     int luggageCount2 = scanner.nextInt();
                     scanner.nextLine();  // Consume newline left-over
 
-                    Passenger_51_G2 passenger2 = new Passenger_51_G2(id2, name2, ticketClass2, destination2, isSpecialNeeds2);
+                    Passenger passenger2 = new Passenger(id2, name2, ticketClass2, destination2, isSpecialNeeds2);
 
 
                     //Information for the luggage(s):
-                    ArrayList<Luggage_51_G2> newLuggages2 = new ArrayList<>();
+                    ArrayList<Luggage> newLuggages2 = new ArrayList<>();
 
                     if(luggageCount2 > 0)
                     {
@@ -141,7 +140,7 @@ public class AirlineCheckInSystem_51_G2
                             double height = scanner.nextDouble();
                             scanner.nextLine();
 
-                            Luggage_51_G2 luggage = new Luggage_51_G2(lugID, id2, weight, length, width, height);
+                            Luggage luggage = new Luggage(lugID, id2, weight, length, width, height);
                             passenger2.addLuggage(luggage);
                         }
                     }
@@ -171,7 +170,7 @@ public class AirlineCheckInSystem_51_G2
                     System.out.println("Enter the luggage height: ");
                     double height = scanner.nextDouble();
 
-                    Luggage_51_G2 luggage = new Luggage_51_G2(luggageId, passengerId, luggageWeight, length, width, height);
+                    Luggage luggage = new Luggage(luggageId, passengerId, luggageWeight, length, width, height);
 
                     checkInSystem.pushLuggage(luggage);
                     System.out.println("Luggage pushed successfully.");
@@ -190,7 +189,7 @@ public class AirlineCheckInSystem_51_G2
 
 
                 case 5: //Checks if luggage stack is empty. If not, pops the luggage at the top.
-                    Luggage_51_G2 top = checkInSystem.popLuggage(); //removes and returns top luggage
+                    Luggage top = checkInSystem.popLuggage(); //removes and returns top luggage
                     if (top != null) {
                         System.out.println("Luggage with ID " + top.getId() + " popped!");
                     } else {
@@ -200,7 +199,7 @@ public class AirlineCheckInSystem_51_G2
 
 
                 case 6: //Uses .peek() to check for the next passenger in queue without removing
-                    Passenger_51_G2 next = checkInSystem.getNextPassenger();
+                    Passenger next = checkInSystem.getNextPassenger();
 
                     if (next != null) {
                         System.out.println("Next passenger's name: " + next.getName());
@@ -211,7 +210,7 @@ public class AirlineCheckInSystem_51_G2
 
 
                 case 7: //Checks if stack is empty, if not, removes top and prints ID.
-                    Luggage_51_G2 topLug = checkInSystem.getTopLuggage();
+                    Luggage topLug = checkInSystem.getTopLuggage();
 
                     if (topLug != null) {
                         System.out.println("Top luggage: " + topLug.getId());
@@ -231,23 +230,23 @@ public class AirlineCheckInSystem_51_G2
     }//End of main
 
     // Constructor
-    public AirlineCheckInSystem_51_G2() {
+    public AirlineCheckInSystem() {
         passengersQueue = new LinkedList<>();
         luggageStack = new Stack<>();
-        priorityServicesQueue = new PriorityQueue<>(new ScoreComparator_51_G2());
+        priorityServicesQueue = new PriorityQueue<>(new ScoreComparator());
     }
 
 
     // Methods:
-    public void enqueuePassenger(Passenger_51_G2 passenger) { //Adds a passenger to end of queue
+    public void enqueuePassenger(Passenger passenger) { //Adds a passenger to end of queue
         passengersQueue.offer(passenger);
     }
 
-    public void enqueuePriorityPassenger(Passenger_51_G2 passenger) { //Adds a passenger to the priority queue in order.
-        priorityServicesQueue.offer(new PriorityService_51_G2(passenger.getId(), passenger.calculatePriorityScore()));
+    public void enqueuePriorityPassenger(Passenger passenger) { //Adds a passenger to the priority queue in order.
+        priorityServicesQueue.offer(new PriorityService(passenger.getId(), passenger.calculatePriorityScore()));
     }
 
-    public void pushLuggage(Luggage_51_G2 luggage) { //Adds luggage to the top of the stack
+    public void pushLuggage(Luggage luggage) { //Adds luggage to the top of the stack
         luggageStack.push(luggage);
     } //Adds luggage to top of stack.
 
@@ -266,15 +265,15 @@ public class AirlineCheckInSystem_51_G2
         return passenger;
     }
 
-    public Luggage_51_G2 popLuggage() { //Removes and returns the luggage at the top of the stack.
+    public Luggage popLuggage() { //Removes and returns the luggage at the top of the stack.
         return luggageStack.pop();
     } //Removes and return top luggage in stack.
 
-    public Passenger_51_G2 getNextPassenger() { //Returns copy of passenger next in queue, but doesn't remove them.
+    public Passenger getNextPassenger() { //Returns copy of passenger next in queue, but doesn't remove them.
         return passengersQueue.peek();
     }
 
-    public Luggage_51_G2 getTopLuggage() { //Returns copy of luggage at top of stack. If stack is empty, returns null.
+    public Luggage getTopLuggage() { //Returns copy of luggage at top of stack. If stack is empty, returns null.
         return luggageStack.isEmpty() ? null : luggageStack.peek();
     }
     //^ If queue is empty, returns null, otherwise, returns copy of top element.

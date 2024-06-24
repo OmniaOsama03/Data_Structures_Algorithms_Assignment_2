@@ -1,19 +1,17 @@
 import java.util.*;
-
-//Omnia Osama Ahmed - 1084505
-public class Passenger_51_G2 implements Traveler_51_G2
+public class Passenger implements Traveler
 {
     //Relevant attributes:
     private String id;
     private String name;
     private String ticketClass;
-    private ArrayList<Luggage_51_G2> luggages = new ArrayList<>();
+    private ArrayList<Luggage> luggages = new ArrayList<>();
     private String destination;
     private boolean specialNeeds;
 
 
     //Constructor:
-    Passenger_51_G2(String id, String name, String ticketClass, String destination, ArrayList<Luggage_51_G2> luggages, boolean specialNeeds)
+    Passenger(String id, String name, String ticketClass, String destination, ArrayList<Luggage> luggages, boolean specialNeeds)
     {
         this.id = id;
         this.name = name;
@@ -23,7 +21,7 @@ public class Passenger_51_G2 implements Traveler_51_G2
         addLuggages(luggages);
     }
 
-    Passenger_51_G2(String id, String name, String ticketClass, String destination, boolean specialNeeds)
+    Passenger(String id, String name, String ticketClass, String destination, boolean specialNeeds)
     {
         this.id = id;
         this.name = name;
@@ -35,7 +33,7 @@ public class Passenger_51_G2 implements Traveler_51_G2
     //Setters
     public void setName(String name) {this.name = name;}
     public void setTicketClass(String ticketClass) {this.ticketClass = ticketClass;}
-    public void setLuggages(ArrayList<Luggage_51_G2> luggages) {addLuggages(luggages);}
+    public void setLuggages(ArrayList<Luggage> luggages) {addLuggages(luggages);}
     public void setDestination(String destination) {this.destination = destination;}
     public void setSpecialNeeds(boolean specialNeeds) {this.specialNeeds = specialNeeds;}
 
@@ -43,7 +41,7 @@ public class Passenger_51_G2 implements Traveler_51_G2
     public String getId() {return id;}
     public String getName() {return name;}
     public String getTicketClass() {return ticketClass;}
-    public ArrayList<Luggage_51_G2> getLuggages() {return luggages;}
+    public ArrayList<Luggage> getLuggages() {return luggages;}
     public String getDestination() {return destination;}
     public boolean isSpecialNeeds() {return specialNeeds;}
 
@@ -53,7 +51,7 @@ public class Passenger_51_G2 implements Traveler_51_G2
         return luggages.size();
     }
 
-    public void addLuggages(ArrayList<Luggage_51_G2> newLuggages) //Adds a set of luggages under a passenger's name.
+    public void addLuggages(ArrayList<Luggage> newLuggages) //Adds a set of luggages under a passenger's name.
     {
         if((LuggageCount() + newLuggages.size()) > 3 )
         {
@@ -61,14 +59,14 @@ public class Passenger_51_G2 implements Traveler_51_G2
         }
         else
         {
-            for(Luggage_51_G2 luggage : newLuggages)
+            for(Luggage luggage : newLuggages)
             {
                 addLuggage(luggage);
             }
         }
     }
 
-    public void addLuggage(Luggage_51_G2 newLuggage) //Checks for dimensional requirements, and adds luggage.
+    public void addLuggage(Luggage newLuggage) //Checks for dimensional requirements, and adds luggage.
     {
         if(luggages.size() + 1 <= 3)
         {
